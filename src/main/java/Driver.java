@@ -1,7 +1,9 @@
 import utils.datastructures.MyLinkedList;
 
 public class Driver {
-    public static void main(String[] args) {
+    public static void main(String... args) {
+
+
 
         MyLinkedList<Integer> theList = new MyLinkedList<>();
         theList.add(0);
@@ -16,9 +18,8 @@ public class Driver {
         }
 
 
-
-
-
+        theList.testMethod("hello", "farewell", "one", "two", "three");
+        System.out.println(theList.testSum(1,2,3,4,5));
 
     }
 

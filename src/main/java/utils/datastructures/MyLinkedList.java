@@ -1,22 +1,10 @@
 package utils.datastructures;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 
-////////////////////////////////// THIS STUFF IS HINTS ABOUT IMPLEMENTING ARRAYLIST ////////////////////////////////////
-//      At the core of your arraylist implementation there WILL BE A primitive array.
-//    this works - our hack we avoid generics, instead using an array of Objects,
-//     because all objects inherit eventually from Object class.
-//    Object[] o = new Object[2];
-//
-//    this doesn't work, can't directly build an array of generics
-//    E[] w = new E[2];
-//
-//    When we want to return our array, we would need to "cast" it like this "(Type) thing" we turn the thing into type.
-//    public E[] getArray() {
-//        return (E[]) o;
-//    }
-////////////////////////////////// THIS STUFF IS HINTS ABOUT IMPLEMENTING ARRAYLIST ////////////////////////////////////
+
 
 
 
@@ -25,9 +13,7 @@ import java.util.List;
  * Also implements Iterable interface. (commented out)
  * @param <T>
  */
-
-
-public class MyLinkedList<T> implements MyListInterface<T>{
+public class MyLinkedList<T> implements MyListInterface<T>, Iterable<T>{
     private Node<T> head;
     private Node<T> tail;
     private int size;
@@ -138,7 +124,6 @@ public class MyLinkedList<T> implements MyListInterface<T>{
 
         if(index == 0) {
             head = head.next;
-            size--;
         } else {
 
             Node<T> cursor = head;
@@ -151,8 +136,8 @@ public class MyLinkedList<T> implements MyListInterface<T>{
             cursor.prev.next = cursor.next;
             cursor.prev = null;
             cursor.next = null;
-            size--;
         }
+        size--;
     }
 
 
@@ -165,40 +150,40 @@ public class MyLinkedList<T> implements MyListInterface<T>{
         return size;
     }
 
-//    /**
-//     * iterator implementation
-//     * @return returns an iterator object to traverse the linked list
-//     */
-//    @Override
-//    public Iterator<T> iterator() {
-//        return new Iterator<T>() {
-//            private Node<T> cursor = head;
-//
-//            /**
-//             * checks if the linked list has another node, testing if the cursor points to a node
-//             * or if it is null
-//             * @return true if the cursor points to a node, false if the cursor node reference is null
-//             */
-//            @Override
-//            public boolean hasNext() {
-//                if (cursor == null){
-//                    return false;
-//                }
-//                return true;
-//            }
-//
-//            /**
-//             * returns the node the cursor points to, then advances the cursor to the next node
-//             * @return the object at the location of the cursor
-//             */
-//            @Override
-//            public T next() {
-//                T t = cursor.obj;
-//                cursor = cursor.next;
-//                return t;
-//            }
-//        };
-//    }
+    /**
+     * iterator implementation
+     * @return returns an iterator object to traverse the linked list
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> cursor = head;
+
+            /**
+             * checks if the linked list has another node, testing if the cursor points to a node
+             * or if it is null
+             * @return true if the cursor points to a node, false if the cursor node reference is null
+             */
+            @Override
+            public boolean hasNext() {
+                if (cursor == null){
+                    return false;
+                }
+                return true;
+            }
+
+            /**
+             * returns the node the cursor points to, then advances the cursor to the next node
+             * @return the object at the location of the cursor
+             */
+            @Override
+            public T next() {
+                T t = cursor.obj;
+                cursor = cursor.next;
+                return t;
+            }
+        };
+    }
 
 
     /**
@@ -247,6 +232,25 @@ public class MyLinkedList<T> implements MyListInterface<T>{
             this(t, next);
             this.prev = prev;
         }
+    }
+
+
+    public void testMethod(String greeting, String goodbye, String... args) {
+        System.out.println(greeting);
+        for(int i = 0; i < args.length; i++) {
+            System.out.println(args[i]);
+        }
+        System.out.println(goodbye);
+    }
+
+    public int testSum(Integer... nums) {
+        int sum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+
+        return sum;
     }
 
 
