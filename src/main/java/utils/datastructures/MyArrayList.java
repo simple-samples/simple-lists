@@ -24,9 +24,10 @@ public class MyArrayList<T> implements MyListInterface<T>{
 
 
     public MyArrayList() {
-        maxSize = 2;
-        size = 0;
-        array = new Object[maxSize];
+        initialize();
+//        maxSize = 2;
+//        size = 0;
+//        array = new Object[maxSize];
     }
 
 
@@ -57,7 +58,16 @@ public class MyArrayList<T> implements MyListInterface<T>{
 
     @Override
     public void clear() {
+        initialize();
+//        maxSize = 2;
+//        size = 0;
+//        array = new Object[maxSize];
+    }
 
+    private void initialize(){
+        maxSize = 2;
+        size = 0;
+        array = new Object[maxSize];
     }
 
     @Override
